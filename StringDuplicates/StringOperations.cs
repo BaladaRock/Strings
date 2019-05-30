@@ -11,13 +11,7 @@
 
             while (word.Contains(duplicate))
             {
-                for (int i = 1; i < word.Length; i++)
-                {
-                    if (word[i] == word[i - 1] && word[i] == giveCharacter)
-                    {
-                        word = word.Remove(i, 1);
-                    }
-                }
+                word = word.Remove(word.IndexOf(duplicate), 1);
             }
 
             return word;
