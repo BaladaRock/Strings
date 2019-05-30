@@ -19,21 +19,15 @@
 
         public string RemoveEndingCharacters(char giveCharacter, string word)
         {
-            if (string.IsNullOrEmpty(word))
+            if (string.IsNullOrEmpty(word) || !word.EndsWith(giveCharacter))
                 return word;
 
-            int count = 0;
-            if (word[word.Length - 1] == giveCharacter)
+            while (word.EndsWith(giveCharacter))
             {
-                for (int i = word.Length - 1; i >= 0; i--)
-                {
-                    if (word[i] == giveCharacter)
-                        count++;
-                    else
-                        break;
-                }
+                word = word.Remove(word.LastIndexOf(giveCharacter));
             }
-            return word.Substring(0, word.Length - count);
+
+            return word;
         }
     }
 }
