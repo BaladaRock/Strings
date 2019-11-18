@@ -6,7 +6,16 @@ namespace StringDuplicates
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            int[] word = new int[5];
+            ModifyString(word);
+            Console.WriteLine(Convert.ToString(word[0]));
+
+            Console.ReadKey();
+        }
+
+        static void ModifyString(int[] word)
+        {
+            word[0] = 1;
         }
     }
 }
