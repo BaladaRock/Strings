@@ -158,5 +158,71 @@ namespace StringOperations
             //Then
             Assert.Equal("abbbcadaraga", result);
         }
+
+        [Fact]
+        public void Test_ReplaceSubstring_SubString_Is_Empty()
+        {
+            //Given
+            var testObject = new StringOperations();
+            //When
+            string result = testObject.ReplaceSubstring("A", "");
+            //Then
+            Assert.Equal("A", result);
+        }
+
+        [Fact]
+        public void Test_ReplaceSubstring_SimpleCase()
+        {
+            //Given
+            var testObject = new StringOperations();
+            //When
+            string result = testObject.ReplaceSubstring("XXAndrei", "XX");
+            //Then
+            Assert.Equal("Andrei", result);
+        }
+
+        [Fact]
+        public void Test_ReplaceSubstring_MiddleReplace()
+        {
+            //Given
+            var testObject = new StringOperations();
+            //When
+            string result = testObject.ReplaceSubstring("XXAndreiXXDaian", "XX");
+            //Then
+            Assert.Equal("Andrei Daian", result);
+        }
+
+        [Fact]
+        public void Test_ReplaceSubstring_ShouldCorrectly_replace_EndOfString()
+        {
+            //Given
+            var testObject = new StringOperations();
+            //When
+            string result = testObject.ReplaceSubstring("XXAndreiXXDaianXXX", "XX");
+            //Then
+            Assert.Equal("Andrei Daian X", result);
+        }
+
+        [Fact]
+        public void Test_ReplaceSubstring_ShouldCorrectly_replace_EndOfString_SecondTest()
+        {
+            //Given
+            var testObject = new StringOperations();
+            //When
+            string result = testObject.ReplaceSubstring("WWWAndreiWWWDaianWWWW", "WWW");
+            //Then
+            Assert.Equal("Andrei Daian W", result);
+        }
+
+        [Fact]
+        public void Test_ReplaceSubstring_ShouldCorrectly_replace_EndOfString_LargerSubstring()
+        {
+            //Given
+            var testObject = new StringOperations();
+            //When
+            string result = testObject.ReplaceSubstring("XXAndreiXXDaianXXXXXXX", "XXXXX");
+            //Then
+            Assert.Equal("XXAndreiXXDaian XX", result);
+        }
     }
 }

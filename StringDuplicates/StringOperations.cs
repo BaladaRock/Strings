@@ -1,4 +1,6 @@
-﻿namespace StringOperations
+﻿using System.Text;
+
+namespace StringOperations
 {
     public class StringOperations
     {
@@ -28,6 +30,32 @@
             }
 
             return word;
+        }
+
+        public string ReplaceSubstring(string sentence, string toSkip)
+        {
+            int count = 0;
+            StringBuilder result = new StringBuilder(string.Empty);
+            StringBuilder toJoin = new StringBuilder(string.Empty);
+            for (int i = 0; i < sentence.Length; i++)
+            {
+                toJoin.Append(sentence[i]);
+                if (count < toSkip.Length && sentence[i] != toSkip[count++])
+                {
+                    result.Append(toJoin);
+                    toJoin = new StringBuilder(string.Empty);
+                    count = 0;
+                }
+
+                if (count == toSkip.Length && toSkip.Length != 0)
+                {
+                    result.Append(" ");
+                    toJoin = new StringBuilder(string.Empty);
+                    count = 0;
+                }
+            }
+
+            return result.Append(toJoin).ToString().Trim();
         }
     }
 }
