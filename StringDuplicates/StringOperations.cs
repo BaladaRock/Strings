@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System;
+using System.Text;
 
 namespace StringOperations
 {
@@ -36,26 +37,34 @@ namespace StringOperations
         {
             int count = 0;
             StringBuilder result = new StringBuilder(string.Empty);
-            StringBuilder toJoin = new StringBuilder(string.Empty);
+            StringBuilder buffer = new StringBuilder(string.Empty);
+
             for (int i = 0; i < sentence.Length; i++)
             {
-                toJoin.Append(sentence[i]);
+                buffer.Append(sentence[i]);
                 if (count < toSkip.Length && sentence[i] != toSkip[count++])
                 {
-                    result.Append(toJoin);
-                    toJoin = new StringBuilder(string.Empty);
-                    count = 0;
+                    SaveResultEmptyBuffer(ref buffer, ref result, ref count);
                 }
 
                 if (count == toSkip.Length && toSkip.Length != 0)
                 {
-                    result.Append(" ");
-                    toJoin = new StringBuilder(string.Empty);
-                    count = 0;
+                    buffer = new StringBuilder(" ");
+                    SaveResultEmptyBuffer(ref buffer, ref result, ref count);
                 }
             }
 
-            return result.Append(toJoin).ToString().Trim();
+            return result.Append(buffer).ToString().Trim();
+        }
+
+        private void SaveResultEmptyBuffer(
+            ref StringBuilder toAppend,
+            ref StringBuilder result,
+            ref int count)
+        {
+            result.Append(toAppend);
+            toAppend = new StringBuilder(string.Empty);
+            count = 0;
         }
     }
 }
